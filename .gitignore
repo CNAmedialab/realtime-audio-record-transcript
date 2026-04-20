@@ -1,0 +1,10 @@
+.env
+gcp-service.json
+.venv/
+tasks/*.yaml
+logs/
+__pycache__/
+*.pyc
+.DS_Store
+output/
+transcribed.txt

@@ -1,0 +1,38 @@
+task_name: Can open protocols give journalism a fighting chance in the age of AI agents?
+
+recording:
+  min_duration: 25        # 最短錄音秒數（不足此秒不切）
+  max_duration: 60        # 最長錄音秒數（強制切斷）
+  silence_ms: 600         # 連續靜音毫秒觸發切斷
+  silence_rms_threshold: 300  # RMS 能量門檻（0-32767）
+
+whisper:
+  language: en
+  temperature: 0.1
+  min_dbfs: -50       # 低於此音量跳過不轉錄
+  timeout: 90         # Whisper API 最長等待秒數
+  prompt: >
+    Transcribe carefully. This is a live panel discussion at the International Journalism Festival.
+    Speakers: Florent Daudens (co-founder of Mizal AI) and Lucky Gunasekara (CEO of Miso.ai).
+    Pay close attention to these terms and spell them exactly: Mizal AI, Miso.ai, Hugging Face, Anthropic, Model Context Protocol, MCP, AI agents, LLMs, open protocols, liquid media, API endpoint, authentication, access control, auditability, journalism, newsroom, publisher, licensing, monetization, subscription surface, Big Tech, negotiation leverage, International Journalism Festival, Open Web.
+
+translation:
+  model: gpt-4o-mini
+  temperature: 0.1
+  timeout: 30         # 翻譯 API 最長等待秒數
+  system_prompt: |
+    你現在是一位專業雙語譯者。以下「國際新聞節 (International Journalism Festival)」的英文對談，翻譯成流暢、專業的繁體中文（台灣習慣用語）。【背景資訊】主題是「開放協定能否在 AI 代理時代為新聞業帶來一線生機？」探討媒體如何透過 API 端點、授權機制與模型上下文協定 (MCP)，在 AI 時代建立新的商業模式與談判籌碼。
+    講者為 Mizal AI 共同創辦人 Florent Daudens 與 Miso.ai 執行長 Lucky Gunasekara。【翻譯守則】口語順暢化：這是講者現場對談的逐字稿，請自動過濾掉無意義的發語詞（如 um, uh, you know），並將破碎的口語句子重組為語意連貫、符合中文閱讀習慣的段落，切勿生硬直譯。
+    專業與精準：請確保 AI 與商業術語的翻譯精準到位，符合台灣科技與媒體圈的慣用語。
+    【專有名詞對照表】請嚴格遵守以下術語翻譯，若遇未列出的專門技術詞彙，建議保留英文，或以「中文 (英文)」形式呈現：Model Context Protocol -> 模型上下文協定 (MCP), AI agents -> AI 代理, Open protocols -> 開放協定, Liquid media -> 流動媒體, API endpoint -> API 端點, Authentication -> 認證, Access control -> 存取控制, Auditability -> 稽核性, Journalism -> 新聞業, Newsroom -> 新聞室 / 編輯室, Publisher -> 媒體機構, Licensing -> 授權, Monetization -> 變現 / 商業化, Subscription surface -> 訂閱介面, Big Tech -> 科技巨頭, Negotiation leverage -> 談判籌碼
+    【重要】無論輸入多短或多長，只輸出翻譯結果本身，不加任何解釋、問候或確認語。若輸入僅為掌聲、謝謝等社交短句，直接翻譯即可，不要回應或確認任何事。
+
+gdoc:
+  doc_id: YOUR_GOOGLE_DOC_ID
+  transcript_tab_id: t.0
+  translation_tab_id: t.xxxxxxxxx
+  timeout: 15         # GDoc API 最長等待秒數
+
+sheets:
+  worksheet_id: YOUR_GOOGLE_SHEET_ID
+  sheet_name: ""          # 留空 = 不寫入 Sheets
